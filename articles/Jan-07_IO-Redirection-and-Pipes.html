@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="../style.css">
+		<link href="https://fonts.googleapis.com/css2?family=Fira+Code&amp;family=Open+Sans:ital,wght@0,400;0,600;1,400;1,600&amp;display=swap" rel="stylesheet">
+		<title>VPCI Linux Club Blog</title>
+	</head>
+	<body>
+		<article>
+<h1 id="IO%20Redirection%20and%20Pipes">IO Redirection and Pipes</h1>
+
+<p>For those of you reading the blog to catch up on a missed lesson, I wanted to mention that we started off the lesson with a review of all the concepts we learned up to now. If you have time, go back to previous blog posts and make sure you understand them. You <strong>don&#39;t</strong> have to memorise everything! You&#39;re not writing an exam, relax. </p>
+
+<p>Also, I realised that I forgot to teach you about one of the most fun things about using Linux: using tiling window managers! If the lessons up till now have bored you, then wait till you see what a tiling window manager is and how it can change your workflow.</p>
+
+<h1 id="IO%20Redirection">IO Redirection</h1>
+
+<p>IO stands for Input&#47;Output. There are 2 concepts: </p>
+
+<ul>
+<li>Output Redirection</li>
+<li>Input Redirection</li>
+</ul>
+
+<h2 id="Output%20Redirection">Output Redirection</h2>
+
+<p>The following command will simply output &#8220;Hello, World!&#8221;. You already know this.</p>
+
+<pre><code>echo Hello, World!
+</code></pre>
+
+<p>Now, if we add a right angle bracket (aka greater than symbol) and a filename, the command will write the text &#8220;Hello, World!&#8221; to that file.</p>
+
+<pre><code>echo Hello, World! &#62; myFile
+</code></pre>
+
+<p>You can use the <code>cat</code> command to view the contents of myFile to verify.</p>
+
+<p>This syntax, with the right angle bracket is called &#8220;Output Redirection&#8221; because it takes the output of the <code>echo</code> command and <em>redirects</em> it into a file. As you may guess, it works with any command.</p>
+
+<pre><code>ls &#62; contentsOfDirectory
+</code></pre>
+
+<p>The above command will write the output of <code>ls</code> to the file.</p>
+
+<p>Side note: you may notice that the contents of the file <code>contentsOfDirectory</code> after running that command are slightly different than what you would see if you ran the <code>ls</code> command normally. In particular, each file and directory would be written to the file on a new line. This is since <code>ls</code> gives different output depending on if the output is shown to you, or written to a file. (If you want to know why, ask me in person, or look it up). Note that this is not the case for all commands.</p>
+
+<p>Now let&#39;s run the <code>echo</code> command again, shown below, but using the filename from the <code>ls</code> command.</p>
+
+<pre><code>echo Hello, World! &#62; contentsOfDirectory
+</code></pre>
+
+<p>If you view the contents of that file, you will see &#8220;Hello, World!&#8221;. The previous contents would have dissappeared. This is because output redirection with &#8216;&#62;&#8217; overwrites the contents of the file. If you want to append to the file, use 2 right angle brackets.</p>
+
+<pre><code>echo Hello, World! &#62;&#62; contentsOfDirectory
+</code></pre>
+
+<p>After running that command, you will see 2 instances of &#8220;Hello, World!&#8221;, since the command appended to the file. Be careful when using output redirection with &#8216;&#62;&#8217; so that you don&#39;t accidentaly overwrite a file, because there is no &#8216;undo&#8217; for this.</p>
+
+<h2 id="Input%20Redirection">Input Redirection</h2>
+
+<p>Similarly, there is a way to use files as <em>input</em> to commands. This is called input redirection. For example, the following command will search for all occurences of &#8216;word&#8217; in the file &#8216;myFile&#8217;:</p>
+
+<pre><code>grep word myFile
+</code></pre>
+
+<p>This command is taking <code>myFile</code> as an argument. Another way to do this is:</p>
+
+<pre><code>grep word &#60; myFile
+</code></pre>
+
+<p>Now, the result will be the same, but we have used <code>Input Redirection</code>. The left angle bracket (<code>&#60;</code>) is telling the computer to feed the contents of &#8216;myFile&#8217; into the <code>grep</code> command as input. Notice that <code>grep</code> is no longer taking myFile as an argument, instead, <code>myFile</code> is part of the <code>&#60;</code> syntax.</p>
+
+<p>Input redirection is less commonly used, especially with basic commands, because most commands accept a file as an argument (like the first example of <code>grep</code> above), so input redirection is redundant. However, if you are programming, and your program expects input through standard input, you can do the following to feed it the contents of myFile as input:</p>
+
+<pre><code>.&#47;myProgram &#60; myFile
+</code></pre>
+
+<p>You may find this useful if you are doing competitive programming (like for the CCC), and you want to test your program with some sample input. Doing it this way will eliminate the need to type in the input every time you want to test your program.</p>
+
+<h1 id="Pipes">Pipes</h1>
+
+<p>Make a file named &#8216;myFile&#8217; with the following contents:</p>
+
+<pre><code>This is a sentence.
+Another sentence.
+Here is one more.
+Hello, World!
+</code></pre>
+
+<p>Now runnning the following command will search for the word &#8216;sentence&#8217; in myFile:</p>
+
+<pre><code>grep sentence myFile
+</code></pre>
+
+<p>And running the <code>sort</code> command will output the alphabetically sorted contents of myFile.</p>
+
+<pre><code>sort myFile
+</code></pre>
+
+<p>Now, what if I want to find occurences of &#8216;sentence&#8217;, and then sort them? I could use output redirection like this:</p>
+
+<pre><code>grep sentence myFile &#62; tmp
+</code></pre>
+
+<p>And then run the sort command on the file &#8216;tmp&#8217;.</p>
+
+<pre><code>sort tmp
+</code></pre>
+
+<p>But there&#39;s a better way, where you don&#39;t have to create a temporary file. It&#39;s like this:</p>
+
+<pre><code>grep sentence myFile | sort
+</code></pre>
+
+<p>The <code>|</code> character is usually found above the backslash on US keyboards. Here, it tells the computer to take the input from the first command (in this case, the <code>grep</code> command) and feed it directly to the second command as input. We say that the output of <code>grep sentence myFile</code> is &#8216;piped&#8217; into <code>sort</code>. This syntax is known as a &#8216;pipe&#8217; because you can think of the input of the 1st command as being sent through a pipe to the second command.</p>
+
+<p>Pipes allow you to chain commands together. You can use multiple pipes in one line. For example:</p>
+
+<pre><code>echo "This is some more text" | cat myFile  - | sort
+</code></pre>
+
+<p>This command will first run the <code>echo</code> command, which will output &#8220;This is some more text&#8221;, and then the <code>cat</code> command will concatenate the contents of myFile and the input it receives through the pipe (the - tells it to take input through the pipe) and then the last command will sort the whole thing.</p>
+</article>
+<footer>
+	<!-- Created with <a href="https://www.romanzolotarev.com/ssg.html">ssg</a> by Roman Zolotarev -->
+</footer>
+</body>
+</html>
