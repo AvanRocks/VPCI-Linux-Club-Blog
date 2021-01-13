@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="../style.css">
+		<link href="https://fonts.googleapis.com/css2?family=Fira+Code&amp;family=Open+Sans:ital,wght@0,400;0,600;1,400;1,600&amp;display=swap" rel="stylesheet">
+		<title>VPCI Linux Club Blog</title>
+	</head>
+	<body>
+		<article>
+<h1 id="More%20Basic%20Commands">More Basic Commands</h1>
+
+<h2 id="mkdir%20(make%20directory)">mkdir (make directory)</h2>
+
+<ul>
+<li>To create a directory:</li>
+</ul>
+
+<pre><code>mkdir myDir
+</code></pre>
+
+<ul>
+<li>To create a directory and also create subdirectories:</li>
+</ul>
+
+<pre><code>mkdir -p dir1&#47;dir2&#47;dir3
+</code></pre>
+
+<h2 id="rmdir%20(remove%20directory)">rmdir (remove directory)</h2>
+
+<pre><code>rmdir myDir
+</code></pre>
+
+<ul>
+<li>rmdir only removes the directory if its empty</li>
+</ul>
+
+<h2 id="touch">touch</h2>
+
+<ul>
+<li>creates an empty file with the specified name
+<code>
+touch myFile
+</code></li>
+</ul>
+
+<h2 id="ls%20(some%20more%20options%20for%20ls)">ls (some more options for ls)</h2>
+
+<ul>
+<li><p>only shows files with name &#8220;myFile&#8221;
+<code>
+ls myFile
+</code></p></li>
+<li><p>you can use wildcard characters:</p>
+
+<ul>
+<li>? - any one character</li>
+<li>* - any amount of any character(s) </li>
+<li>[ab] - a or b</li>
+<li>[a-z] - characters from a to z</li>
+<li>[!a] - any character except a</li>
+</ul></li>
+</ul>
+
+<pre><code>ls myF?le
+ls myF*
+ls myFile[ab]
+ls myFile[a-z]
+ls myFile[!a]
+</code></pre>
+
+<ul>
+<li>not very useful in this case, but you can use these wildcard characters with any command</li>
+</ul>
+
+<h2 id="echo">echo</h2>
+
+<ul>
+<li>repeats the arguments back to you</li>
+<li>use &#62; to send the output to a file (caution: it overwrites the file!)</li>
+<li>use &#62;&#62; to append the output to a file</li>
+<li>&#62; and &#62;&#62; can be used with any command</li>
+</ul>
+
+<pre><code>echo Hello, world!
+echo stuff &#62; myFile
+echo stuff &#62;&#62; myFile
+</code></pre>
+
+<h2 id="cat%20(concatenate)">cat (concatenate)</h2>
+
+<ul>
+<li>outputs contents of a file</li>
+<li>cat -n numbers the lines</li>
+</ul>
+
+<pre><code>cat myFile
+cat -n myFile
+</code></pre>
+
+<h2 id="rm%20(remove)">rm (remove)</h2>
+
+<ul>
+<li>deletes a file (permanentaly! There is no Trash folder in Linux)</li>
+<li>rm -i ask you for confirmation before deleting</li>
+<li>Tip: always use rm -i so you don&#39;t accidentaly delete anything</li>
+<li>rm -r deletes a directory (including its contents)</li>
+<li>you can combine the options. You can do this for any command</li>
+</ul>
+
+<pre><code>rm myFile
+rm -i myFile
+rm -r myDir
+rm -ir myDir
+</code></pre>
+
+<h2 id="cp%20(copy)">cp (copy)</h2>
+
+<ul>
+<li>copy a file</li>
+<li>1st argument is source file, 2nd is destination file</li>
+<li>if destination file exists, cp will overwrite it</li>
+<li>if it doesn&#39;t, cp will create it</li>
+<li>cp -i asks for confirmation before overwriting</li>
+<li>always use cp -i</li>
+</ul>
+
+<pre><code>cp myFile myCopiedFile
+cp -i myFile myNewFile
+cp -r myFile myNewFile
+cp myFile otherDir&#47;overHere&#47;myCopiedFile
+</code></pre>
+
+<h2 id="mv%20(move)">mv (move)</h2>
+
+<ul>
+<li>mv can move or rename file</li>
+<li>the first argument is the source file, the second argument is the destination file</li>
+<li>if destination file already exists, mv will overwrite it</li>
+<li>if it doesn&#39;t exist, mv will create it</li>
+<li>if the destination file name is different, you renamed the file, if its the same, you moved the file
+
+<ul>
+<li>this is since filename and location are the same in Linux</li>
+</ul></li>
+<li>mv -i asks for confirmation before overwriting</li>
+<li>always use mv -i</li>
+<li>you can also move directories</li>
+<li>if the source is a file, and destination is a directory, the file gets moved into the destination directory and retains its name</li>
+</ul>
+
+<pre><code>mv myFile myNewFile
+mv -i myFile myNewFile
+mv myFile myDir&#47;myNewFile
+mv myFile ..&#47;myNewFile
+mv myDir1 myDir2&#47;
+mv myFile myDir&#47;
+</code></pre>
+
+<h2 id="tree">tree</h2>
+
+<ul>
+<li>displays contents of current directory recursively like a tree</li>
+</ul>
+
+<pre><code>tree
+</code></pre>
+</article>
+<footer>
+	<!-- Created with <a href="https://www.romanzolotarev.com/ssg.html">ssg</a> by Roman Zolotarev -->
+</footer>
+</body>
+</html>

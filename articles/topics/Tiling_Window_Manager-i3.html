@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="../style.css">
+		<link href="https://fonts.googleapis.com/css2?family=Fira+Code&amp;family=Open+Sans:ital,wght@0,400;0,600;1,400;1,600&amp;display=swap" rel="stylesheet">
+		<title>VPCI Linux Club Blog</title>
+	</head>
+	<body>
+		<article>
+<h1 id="Tiling%20Window%20Manager">Tiling Window Manager</h1>
+
+<p>A window manager is a program that runs on your computer, in the background, that handles the GUI windows of all applications. You are using some window manager right now, whether that is on Windows, MacOS, or Ubuntu. We usually take them for granted and don&#39;t think about them at all. Your window manager determines how the bar above your windows look (the one with the close, maximize and minimize buttons). It also moves windows around your screen when you drag them with your cursor, like you would expect a computer to behave. Pretty simple stuff.</p>
+
+<p>In Linux, you can choose which window manager you want to use. It turns out there are some pretty surprising window managers out there, that do more than just the basic stuff that you are used to. It&#39;s very likely that you have never seen anything like it before. The window managers that we are interested in are &#8220;Tiling&#8221; window managers. These ones resize windows for you so that they always fill up the entire screen. This way, no space is wasted. It&#39;s sort of like how Windows allows you to have one window covering half of your screen, and another covering the other half, but with a tiling window manager, you don&#39;t need to resize them manually because it handles that for you. You will see what I mean in a bit.</p>
+
+<p>There are several tiling window managers out there, but the one we will use is called i3. To get started using i3, we need to first install it on the computer.</p>
+
+<p>First update the package list on your comptuer: (See the lesson on Installing Software if you are not familiar with this).</p>
+
+<pre><code>sudo apt update
+</code></pre>
+
+<p>The previous command ensures you install the most up-to-date version of i3.</p>
+
+<p>Then install i3:</p>
+
+<pre><code>sudo apt install i3
+</code></pre>
+
+<p>Now you need to log out and log back in. <strong>But wait!</strong> Don&#39;t do it yet, because when you log back in, you will be put in an unfamiliar interface (because the i3 window manager will be running). Before logging out and back in, make sure you have access to this blog post from another device (a phone, maybe). Now that you have this page open on another device, log out (by clicking on the dropdown menu in the top-right corner), and when logging back in, click on the settings icon in the bottom-right and select &#8220;i3&#8221;. This will allow you to use the i3 window manager.</p>
+
+<p>Now you will be faced with a purple background, a black bar on the bottom with some colored text, and a black window in the center of the screen. The window prompts you to let it create a configuration file. Do so (click enter). Then it will prompt you to choose a default modifier key. You can change the selection with the up&#47;down arrow keys. I recommend you to use the Windows key (&#8220;Win&#8221; in the prompt) as it usually doesn&#39;t clash with other keyboard shortcuts. Hit enter.</p>
+
+<p>Now you are using the i3 window manager. To do stuff, you use keyboard shortcuts. Here are some commonly used ones:</p>
+
+<ul>
+<li>Mod + Enter - open a terminal</li>
+<li>Mod + d - launch applications</li>
+<li>Mod + f - fullscreen mode</li>
+<li>Mod + Shift + q - close a window</li>
+<li>Mod + Shift + e - log out</li>
+</ul>
+
+<p>Here, &#8220;Mod&#8221; stands for whatever modifier key you chose previously.</p>
+
+<p>You can find all the default keybindings on the i3 user guide <a href="https://i3wm.org/docs/userguide.html">here</a>. Bookmark that website, it&#39;s very useful.</p>
+
+<p>Now, remember the config file you created at the beginning? In there, you can set your own keybindings that do various operations. You can even overwrite the default keybindings.</p>
+
+<p>We will learn how to customize i3 by setting keybindings and a wallpaper next time. Until then, if you are interested, you can read the i3 user guide (linked above), or find some other tutorial online.</p>
+</article>
+<footer>
+	<!-- Created with <a href="https://www.romanzolotarev.com/ssg.html">ssg</a> by Roman Zolotarev -->
+</footer>
+</body>
+</html>
