@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="../style.css">
+		<link href="https://fonts.googleapis.com/css2?family=Fira+Code&amp;family=Open+Sans:ital,wght@0,400;0,600;1,400;1,600&amp;display=swap" rel="stylesheet">
+		<title>VPCI Linux Club Blog</title>
+	</head>
+	<body>
+		<article>
+<h1 id="Shell%20Scripting%20-%20Basics">Shell Scripting - Basics</h1>
+
+<p>A shell script is just a text file with a collection of commands. You can tell the compture to &#8216;run&#8217; the script, and all the commands in it will be run sequencially.</p>
+
+<h2 id="Basic%20example%20of%20creating%20a%20script">Basic example of creating a script</h2>
+
+<ol start="1">
+<li><p>Create a text file called myScript</p></li>
+<li><p>Run <code>chmod u+x myScript</code></p></li>
+<li><p>Add <code>#!&#47;bin&#47;bash</code> on the first line of myScript</p></li>
+<li><p>Add commands after that, each on seperate lines, to myScript</p></li>
+<li><p><code>.&#47;myScript</code> will run your script</p></li>
+</ol>
+
+<p>You can put any syntax that you normally used on the command line, in a script, like arguments, IO redirection, pipes, etc. You can also set variables, create if statements, for loops, and much more. In fact, you can even do those things on the command line, but a script makes it more convienent for using those things.</p>
+
+<h2 id="Variables">Variables</h2>
+
+<p>To set a variable:</p>
+
+<pre><code>myVar=4
+</code></pre>
+
+<p>Note that you cannot have spaces before&#47;after the equal sign, otherwise bash (the shell&#47;interpreter&#47;language) will think that myVar is a command and &#8216;= 4&#8217; are its arguments.</p>
+
+<p>To access the value of a variable, prepend it with a &#8216;$&#8217;:</p>
+
+<pre><code>echo $myVar
+</code></pre>
+
+<h2 id="If%20Statements">If Statements</h2>
+
+<pre><code>if [ $myVar == 4 ] 
+then
+    echo yes
+fi
+</code></pre>
+
+<p>Note that whitespace&#47;newlines matter in bash. The &#8216;then&#8217; keyword <strong>can&#39;t</strong> be put on the same line as the &#8216;if&#8217; like this:</p>
+
+<pre><code>if [ $myVar == 4 ]  then
+    echo yes
+fi
+</code></pre>
+
+<p>But you can use a semicolon &#8216;;&#8217; in place of a newline. The following will work:</p>
+
+<pre><code>if [ $myVar == 4 ] ; then
+    echo yes
+fi
+</code></pre>
+
+<h2 id="Better%20If%20Statements">Better If Statements</h2>
+
+<p>There&#39;s a more compact way of making if&#47;then logic:</p>
+
+<pre><code>[ $myVar == 4 ] &#38;&#38; echo yes
+</code></pre>
+
+<p>That will run <code>echo yes</code> if myVar == 4</p>
+
+<p>Now, this will run <code>echo yes</code> if myVar is not equal to 4</p>
+
+<pre><code>[ $myVar == 4 ] || echo yes
+</code></pre>
+
+<p>Essentially, the <code>&#38;&#38;</code> runs the command that follows it, if the previous expression evaluates to true, or if preceded by a command, if the command didn&#39;t have an error. Similarly, <code>||</code> will run the next command if the previous expression&#47;command was false or had an error.</p>
+
+<p>You can chain <code>&#38;&#38;</code> and <code>||</code>. </p>
+
+<p>For example, the following command only runs <code>cmd &#62; myFile</code>  if the file &#8216;myFile&#8217; doesn&#39;t exist. This is useful to avoid overwriting myFile.</p>
+
+<pre><code>[ -f myFile ] || cmd &#62; myFile &#38;&#38; echo "File exists"
+</code></pre>
+</article>
+<footer>
+	<!-- Created with <a href="https://www.romanzolotarev.com/ssg.html">ssg</a> by Roman Zolotarev -->
+</footer>
+</body>
+</html>
