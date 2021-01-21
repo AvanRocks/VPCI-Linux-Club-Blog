@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="../style.css">
+		<link href="https://fonts.googleapis.com/css2?family=Fira+Code&amp;family=Open+Sans:ital,wght@0,400;0,600;1,400;1,600&amp;display=swap" rel="stylesheet">
+		<title>VPCI Linux Club Blog</title>
+	</head>
+	<body>
+		<article>
+<h1 id="Jan%2021:%20Configuring%20i3%20&amp;#38;%20What%20are%20.bashrc%20files">Jan 21: Configuring i3 &#38; What are .bashrc files</h1>
+
+<p>Today we went over how to configure the tiling window manager, i3, by editing it&#39;s configuration file. I also explained the use of the hidden files <code>.bashrc, .bash_aliases, .profile</code>, etc.</p>
+
+<h2 id="Notes">Notes</h2>
+
+<h2 id="i3%20config">i3 config</h2>
+
+<ul>
+<li>The config file is located at <code>~&#47;.config&#47;i3&#47;config</code>.
+
+<ul>
+<li>the user guide (see <a href="https://i3wm.org/docs/userguide.html">this link</a> ) is explains the syntax and gives some useful examples</li>
+<li>lines that start with a &#8216;#&#8217; are comments. They don&#39;t affect the configuration</li>
+<li>how to set custom keybindings:</li>
+</ul></li>
+</ul>
+
+<pre><code>bindsym $mod+Shift+f exec --no-startup-id firefox
+</code></pre>
+
+<ul>
+<li>to change the bar location, add the following line in the <code>bar</code> section (inside the curly braces):
+
+<ul>
+<li>remember to refresh i3 after editing the config file (also don&#39;t forget to save the config file before refreshing)</li>
+<li><a href="../../misc/config">Here&#39;s a link</a> to my config file for i3 (from back when I used to use i3). <strong>Don&#39;t copy and paste</strong> it into your config file, because it won&#39;t work. I have some shortcuts to commands&#47;programs that you don&#39;t have installed. Instead, use it as a reference and only copy the lines that you understand. (You can download it, or copy-paste it into a file, if you want, just don&#39;t blindly use it as your i3 config)</li>
+</ul></li>
+<li>Also, another difference between my config file and yours is that mine is for i3-gaps, not for i3, which is a slighty modified version of i3 which supports gaps in between windows. So there will be some extra lines in my config (for configuring gaps).</li>
+</ul>
+
+<p>Feel free to email me any questions you have about my config file. There is a lot of stuff in there which I didn&#39;t go over, but I can explain it to you if you want.</p>
+
+<pre><code>position top
+</code></pre>
+
+<h2 id=".bashrc,%20.bash_aliases,%20.profile,%20etc.">.bashrc, .bash_aliases, .profile, etc.</h2>
+
+<ul>
+<li>bash is a &#8216;shell&#8217;, which means it&#39;s a program that interprets the commands you type into a terminal
+
+<ul>
+<li>you can also think of bash as being a programming language</li>
+<li>when you start a terminal, bash is automatically started so that you can type commands and interact with your computer</li>
+</ul></li>
+<li><code>.bashrc</code> is a shell script (written in bash) that is run every time you start a new terminal window
+
+<ul>
+<li>it is used to initialize convenient features like tab completion, colors, environment variables, aliases, etc.</li>
+<li>by default, some convienant aliases exist. for ex. <code>l</code> is an alias to <code>ls</code></li>
+<li>in it you will see an if block that runs the <code>~&#47;.bash_alaises</code> file if it exists
+
+<ul>
+<li>note that the syntax for running another shell script, (or &#8216;sourcing&#8217;, as we call it) is the following (either of those commands work, they are synonymous):</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<pre><code>. ~&#47;path&#47;to&#47;shellScript
+source ~&#47;path&#47;to&#47;shellScript
+</code></pre>
+
+<ul>
+<li>by convention, we put our custom aliases (aka shortcuts) in <code>.bash_aliases</code>
+
+<ul>
+<li>the syntax to define aliases is as follows (put this is <code>~&#47;.bash_aliases</code>):</li>
+</ul></li>
+</ul>
+
+<pre><code>alias &#39;mt=cd ~&#47;Documents&#47;school&#47;math&#39;
+alias &#39;myShortcut=this is a long command with many words&#39;
+</code></pre>
+
+<ul>
+<li>The <code>.profile</code> file is similar to <code>.bashrc</code> in that it&#39;s run on startup, except it&#39;s only run on the startup of so-called &#8216;login&#8217; shells, which is the first shell that runs on your computer, before you login. You don&#39;t see this shell if you are using a graphical login manager (like on Ubuntu). This file is not very useful to us</li>
+</ul>
+
+<h2 id="Extra">Extra</h2>
+
+<ul>
+<li>Add the following line to your <code>~&#47;.bashrc</code> to be able to use vim shortcuts on the command line</li>
+</ul>
+
+<pre><code>set -o vi
+</code></pre>
+
+<ul>
+<li>this command enables a bash feature known as &#8216;vi mode&#8217; (vi was the precursor to vim)</li>
+<li>notice that by putting that line in <code>~&#47;bashrc</code>, we are running it every time we start a terminal, and thus we are effectively changing a configuration setting. Now you can see how the <code>~.&#47;bashrc</code> file (which is really just a shell script) acts as a configuration file for bash</li>
+</ul>
+</article>
+<footer>
+	<!-- Created with <a href="https://www.romanzolotarev.com/ssg.html">ssg</a> by Roman Zolotarev -->
+</footer>
+</body>
+</html>

@@ -13,65 +13,9 @@
 
 <p>Before we get started installing Linux onto our computer, there are some things we need to take care of. I will explain these things in this blog post. In the next post, I will walk you through the process of actually installing it.</p>
 
-<p>We will be installing Ubuntu Linux, which is a &#8216;distribution&#8217; of Linux that is suitable for beginners. In case you don&#39;t know what a distribution is, it&#39;s simply a conveniently package of Linux along with some commonly used software. There are several different distributions (or &#8216;distros&#8217; as they are commonly called) that include software for different uses. For now, we will use Ubuntu.</p>
+<p>We will be installing Ubuntu Linux, which is a &#8216;distribution&#8217; of Linux that is suitable for beginners. In case you don&#39;t know what a distribution is, it&#39;s simply a convenient package of Linux along with some commonly used software. There are several different distributions (or &#8216;distros&#8217; as they are commonly called) that include software for different uses. For now, we will use Ubuntu.</p>
 
-<p>Additionally, we will be installing it alongside Windows. This means that you will be able to choose which operating system that you want to use every time that you start your computer. This process of installing 2 operating systems on a computer is known as &#8216;Dual-booting&#8217;.</p>
-
-<p>So how does one install an operating system? You have likely never done this before, since your computer probably came with Windows or MacOS already installed on it. Well, in the case of Ubuntu Linux, we need to follow these steps:</p>
-
-<ol start="1">
-<li><p>Create some space for Ubuntu on your computer&#39;s hard drive</p></li>
-<li><p>Download and copy a mini-Ubuntu operating system onto a USB drive</p></li>
-<li><p>Shut down the computer, plug in the USB, and boot (aka start) your computer &#8216;from&#8217; the USB. This means the computer will use the mini-Ubuntu operating system that&#39;s in the USB, instead of using Windows</p></li>
-<li><p>Follow the on-screen instructions to install Ubuntu onto your computer&#39;s hard drive, alongside Windows.</p></li>
-<li><p>Done! Now, every time you start your computer, you will have the option of starting Ubuntu or Windows.</p></li>
-</ol>
-
-<p>This is a rough outline of what we will be doing. In this blog post, we will only do the first 2 steps.</p>
-
-<h2 id="Backup">Backup</h2>
-
-<p>Right now, if you want, you can do a full backup of your computer (to an external hard drive) using the Windows built-in backup software. During the installation process, we will be making changes directly to your hard drive, which risks losing your files, <strong>if done incorrectly</strong>. But, if you correctly follow all my steps, nothing will go wrong. However, if you want to be extra careful and you have a spare hard drive lying around (or if you have cloud storage), go ahead. I won&#39;t be covering the steps to do that, so you will have to follow an online tutorial. <a href="https://www.windowscentral.com/how-make-full-backup-windows-10">Click here</a> for a link to one, but you can look up another tutorial if you want to.</p>
-
-<h2 id="BIOS%20&amp;#47;%20UEFI">BIOS &#47; UEFI</h2>
-
-<p>There are 2 types of firmware (you don&#39;t need to know what firmware means) on computers: BIOS and UEFI. Your computer will use 1 of these 2 types. The install process will be slightly different depending on which one your computer uses.You must find out which type your computer uses. Newer computers (made after about 2010) tend to use UEFI. Follow <a href="https://itsfoss.com/check-uefi-or-bios/">this</a> tutorial to find out. Remeber which type your computer uses.</p>
-
-<h2 id="Disable%20Fast%20startup%20&amp;#47;%20Secure%20boot">Disable Fast startup &#47; Secure boot</h2>
-
-<p>A small side note: to dual-boot, we will need to disable some features that will interfere with the Linux installation. Namely, fast startup and secure boot.</p>
-
-<p>To disable fast startup go to Control Panel &#62; Hardware and Sound &#62; Power Options &#62; System Settings &#62; Choose what the power buttons do and uncheck the Turn on fast startup box. <a href="https://itsfoss.com/solve-ntfs-mount-problem-ubuntu-windows-8-dual-boot/">Click here</a> for a screenshot tutorial.</p>
-
-<p>Secure boot is a feature exclusive to computers using UEFI. If your computer uses UEFI, follow <a href="https://itsfoss.com/disable-uefi-secure-boot-in-windows-8/">this tutorial</a> to disable secure boot.</p>
-
-<p>Now, grab a USB (at least 4 GB in size), and let&#39;s begin!</p>
-
-<h2 id="1.%20Download%20Ubuntu">1. Download Ubuntu</h2>
-
-<p>We will begin by starting the download of the mini-Ubuntu operating system that we will be copying onto our USB. Even though this is step 2 (see above), I want you to start the download now because it may take a while (it&#39;s around 2.5 GB). Go to <a href="https://ubuntu.com/download/desktop">this link</a> and click on the download button for Ubuntu 20.04.1 LTS. I know it says you need 25 GB of free hard drive space on that website, but don&#39;t worry, the file you are downloading right now is not that big (it&#39;s only 2.5 GB). The website is refering to the space needed when installing Ubuntu on your computer&#39;s hard drive (in step 4). You <strong>DON&#39;T NEED A USB OF 25 GB</strong>! It only needs to be <strong>2.5 GB</strong>.</p>
-
-<h2 id="2.%20Make%20space%20on%20your%20hard%20drive">2. Make space on your hard drive</h2>
-
-<p>In the meantime, while the file is downloading, let&#39;s make some space on our hard drive. Now you will need to have about 40 GB of free space minimum. That&#39;s because the Ubuntu OS takes up 25 GB and the other 15 GB is for your personal files (although this number can vary from person to person). Now is the time to choose which computer you want to install Linux on, depending on how much free space you have on it.</p>
-
-<p>Before we proceed, you should check whether your hard drive uses MBR or GPT partion tables (again, you don&#39;t need to know what that is). These are 2 different types of &#8216;things&#8217; that a hard drive can use. All you need to know is which one your hard drive uses. To find out follow <a href="https://www.howtogeek.com/245610/how-to-check-if-a-disk-uses-gpt-or-mbr-and-how-to-convert-between-the-two/">this tutorial</a>.</p>
-
-<p>Now that you know if the hard drive you want to install Linux on is using MBR or GPT, let&#39;s create some space for Ubuntu. Let me explain what we will be doing right now. All hard drives are split into &#8216;partitions&#8217;. You can think of these as sections of your hard drive. Each section can hold files&#47;data. Your hard drive is already split into some partitions. Only 1 operating system can be installed on each partition. We need to create a new partition to install Ubuntu on. To create a new partition, we need to first &#8216;shrink&#8217; the size of one of the existing partitions. To do this, open up Disk Management (assuming you are using Windows. For MacOS, I think it&#39;s called Disk Utility, but you should look up a tutorial online about how to shrink a partition on MacOS. Or you can ask in the Element group chat for help, because I know someone there has already installed Linux on a Mac) by searching in the bottom left corner. It should look something like this:</p>
-
-<p><img src="../img/disk-management.jpeg" alt="Screenshot of Disk Management" /></p>
-
-<p>Now if your hard drive uses MBR, you can have a maximum of 4 primary partitions. A primary partition is just another name for the regular type of partition that you know of. If you use MBR and your hard drive already has 4 or more partitions, then we will have to delete some of them. If your hard drive uses GPT however, there is no limit to how many partitions you can have, so you can skip the rest of this paragraph. If you need to delete a partition, <strong>DO NOT</strong> delete your windows partition or C drive. Besides those 2, it is likely that you have a manufacturer partiton (like HP Tools, which I had) and a Windows recovery partition. It&#39;s best to delete the manufacturer&#39;s partition, (and then if you still have 4 or more, delete the Windows recovery partition) <strong>BUT WAIT!!!</strong>. Before you delete it, you should make a copy of it onto another drive (unless you really think that you will never need it in the future). To make a copy (or &#8216;clone&#8217; a partition as it&#39;s called), follow <a href="https://www.pcmag.com/how-to/how-to-clone-a-hard-drive">this tutorial</a>. And <a href="https://h30434.www3.hp.com/t5/Notebooks-Archive-Read-Only/Too-Many-Primary-Partitions-to-install-Linux-Help/td-p/197291">this link</a> may be helpful for those of you running old HP laptops like I was. Honestly, you don&#39;t really have to clone the partition, but you can if you want. After doing this, you should have 3 partitions remaining.</p>
-
-<p>Right click on the partition you want to shrink (most likely the C drive partition, for most of you), and click on &#8216;Shrink Volume&#8217; (volume means partition). A window will pop up asking you how much space you want to shrink in MegaBytes. The value you enter here will be the amount of space that you will have to install Linux on. Note that the value is in MB, so pull out your calculator and enter the amount of space that you want. Make sure you have about 40 GB minimum, as this will give you a comfortable amount of room for installing Ubuntu. But if you have more space than that, then about 50-80 GB will be more than enough (but if you have like a 500 GB hard drive, you can do even more!). Notice that there is a maximum limit to how much you can shrink the partition. If you are not able to shrink the partition enough, then follow <a href="https://www.howtogeek.com/671231/how-to-defragment-your-hard-drive-on-windows-10/">this tutorial</a> to &#8216;defragment&#8217; your hard drive, and then try again. If you still don&#39;t have enough space, then backup and delete some of your files, then try again. After you have shrank the partition, there will be a new block that says &#8216;Unallocated&#8217;. This is what we want.</p>
-
-<h2 id="3.%20Burn%20the%20ISO%20to%20the%20USB">3. Burn the ISO to the USB</h2>
-
-<p>Alright, now let&#39;s check on that Ubuntu file that we were downloading in the background. That file is called an &#8216;iso&#8217; file (because its file extension is .iso), and it lets us boot the computer from that file. To do this, we need to copy it onto a USB drive. But a regular copy and paste won&#39;t work. We gotta write the iso file to the USB <strong>as a partition</strong> for this to work. The iso file will occupy an entire partition on the USB, instead of being a file inside a partition. This process of copying a file onto a USB drive as a partition is called &#8216;burning&#8217; the file onto the USB drive. Note that there&#39;s no fire involved here, it&#39;s just funny terminology used for historical reasons. To burn the iso file onto the USB, we will need third-party software. If you are using Windows, install Rufus from <a href="https://rufus.ie/">this link</a>, and if you are using MacOS install Etcher from <a href="https://www.balena.io/etcher/">this link</a>. If you are using Rufus, click <a href="https://www.youtube.com/watch?v=zHB1Eqj1xPk&amp;feature=youtu.be&amp;t=111">this link</a> for a video tutorial (stop the video when he starts talking about booting the computer. All you need to do right now is burn the iso), and if you are using Etcher, click <a href="https://ubuntu.com/tutorials/create-a-usb-stick-on-macos#4-install-and-run-etcher">this link</a>. <strong>BUT WAIT!!!</strong> Before you start burning the iso file to your USB, make sure that you have copied all important files off your USB, because your USB will be <strong>completely wiped</strong> after burning the iso file to it. That means <strong>all</strong> partitions on the USB will be wiped (aka deleted)!</p>
-
-<p>And &#8230; you&#39;re done for now! The hardest part of the installation process is behind you! If you have any questions, let me know.</p>
-
-<p>Good job!</p>
+<p>See <a href="../topics/Installing-Linux-1.html">this page</a> for the detailed instructions.</p>
 </article>
 <footer>
 	<!-- Created with <a href="https://www.romanzolotarev.com/ssg.html">ssg</a> by Roman Zolotarev -->

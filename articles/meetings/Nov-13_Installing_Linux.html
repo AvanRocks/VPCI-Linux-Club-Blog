@@ -15,75 +15,7 @@
 
 <p>I am assuming that you now have a USB with the Ubuntu file burnt onto it, and some free space on your hard drive (which you created using the Windows&#39;s Disk Management utility). You should also know whether your computer uses BIOS or UEFI.</p>
 
-<h1 id="Installation%20Process">Installation Process</h1>
-
-<h2 id="1.%20Boot%20from%20your%20USB">1. Boot from your USB</h2>
-
-<p>Shut down your computer and plug in your USB. Now in a moment, you will start your computer and look to press a key to interrupt the boot process. You might have noticed some text that pops up on your screen as your computer starts, and there is usually a key that it tells you to press in order to pause the boot. The exact key and wording of the text will vary depending on your computer&#39;s manufacturer, but it&#39;s usually one of the Function keys (F1 through F12) or the Escape key. Now start your computer and press that key. You will be at some sort of funky looking menu. Look for some sort of option that says &#8220;Change boot order&#8221; or &#8220;Boot from USB&#8221; or &#8220;Boot Options&#8221;. Again, the exact wording varies. Try using the arrow keys to move around and press enter to select an option. Look for the name of your USB. The name that it displays of your USB might be the name of the manufacturer of the USB. You may have to move the line of your USB to the top, or simply press enter on it. If your computer uses UEFI, you will likely see 2 different rows of your USB. One of them will likely include UEFI somewhere in its name. Choose that one. Now click the key that saves and exits (It will likely be written on the bottom of your screen). If you are really stuck, try looking up &#8220;How to select boot device for __ &#8220; and insert your computer&#39;s model name or manufacturer. Now your computer will have started booting from the USB. You will see a pink-purple screen at first, and then a black screen while it performs disk checks.</p>
-
-<h2 id="2.%20Try%20out%20Ubuntu">2. Try out Ubuntu</h2>
-
-<p>After a bit, you will be presented with 2 options: &#8220;Try Ubuntu&#8221; or &#8220;Install Ubuntu&#8221;. You can click &#8220;Try Ubuntu&#8221; and look around for a bit (to make sure your mouse and keyboard works), or you can click on &#8220;Install Ubuntu&#8221; to proceed. If you clicked on &#8220;Try Ubuntu&#8221;, then when you are done trying it out, click on the &#8220;Install Ubuntu 20.04.1 LTS&#8221; icon on the desktop.</p>
-
-<h2 id="3.%20Select%20language%20and%20keyboard%20layout">3. Select language and keyboard layout</h2>
-
-<p>Pretty self-explanatory.</p>
-
-<h2 id="4.%20Connect%20to%20Wifi">4. Connect to Wifi</h2>
-
-<p>Select your wifi network and enter its password. If you are using a wired connection, this step may look slightly different, but I&#39;m sure you can figure it out.</p>
-
-<h2 id="5.%20Select%20Normal%20Installation%20and%20tick%20both%20boxes">5. Select Normal Installation and tick both boxes</h2>
-
-<p>We want to do a normal installation, not a minimal one. This way, you will have all the regular software (like Word Processor, Browser, etc) pre-installed. Also, tick the &#8220;Download Updates&#8221; and &#8220;Install third-party software&#8221; buttons. The first one will automatically download any available updates as it installs Ubuntu, and the second one will make sure your wifi works.</p>
-
-<h2 id="6.%20Create%20Partitions">6. Create Partitions</h2>
-
-<p>Click on &#8220;Something Else&#8221;, because we want to &#8216;Dual-boot&#8217; Linux with Windows. You will be able to select which operating system to use every time you start your computer.</p>
-
-<p>Now it&#39;s time for the hardest (and most risky) part of the installation. Be sure to triple check that you have done this part correctly before proceeding, since after proceeding, the changes will be irreversible. In the last post, I asked you to find out whether your computer uses BIOS or UEFI (if your computer is more than 8 or 9 years old, it probably uses BIOS). This step will be slightly different depending on what you use. I will point out the differences.</p>
-
-<p>You will be creating some &#8216;partitions&#8217; on your hard drive (refer to the last post for an explanation of partitions). To create a partition, you need to right click on the &#8220;Free Space&#8221; entry, and click &#8220;Add&#8221; (or maybe it&#39;s called &#8220;Create&#8221;, I don&#39;t remember. But there&#39;s only 1 option there).</p>
-
-<p>Then, to create a partition follow this outline (don&#39;t do it yet):</p>
-
-<ul>
-<li><p>Enter the size in MegaBytes (1 GB = 1000 MB, this approximation is fine)</p></li>
-<li><p>Select &#8220;Logical Partition&#8221;</p></li>
-<li><p>Select &#8220;Beginning of this space&#8221;</p></li>
-<li><p>Select &#8220;Ext4 journaling file system&#8221; in the &#8220;Use as&#8221; dropdown menu (unless otherwise specified)</p></li>
-<li><p>Set mount point (it&#39;s different for each partition)</p></li>
-</ul>
-
-<p>If your computer uses UEFI, then first create a partition of size 1 GB (1000 MB). Select &#8220;Logical Partition&#8221; and &#8220;Beginning of this space&#8221;, and then in the &#8220;Use as&#8221; dropdown menu, select &#8220;EFI System Partition&#8221;. The &#8220;Mount point&#8221; option should have disappeared. Click &#8220;OK&#8221;.</p>
-
-<p>If your computer uses BIOS, then create a partition of size 1 GB. Select &#8220;Logical Partition&#8221; and &#8220;Beginning of this space&#8221;. In the &#8220;Use as&#8221; dropdown menu, select &#8220;Ext4 journaling file system&#8221;. In the &#8220;Mount point&#8221; menu, select &#8220;&#47;boot&#8221;. Click &#8220;OK&#8221;.</p>
-
-<p>Now the remaining steps are common for both BIOS and UEFI computers.</p>
-
-<p>Now let&#39;s create another partition, called the &#8216;swap&#8217; partition. Right click on &#8220;Free space&#8221; and click &#8220;Add&#8221; like before. Make it 8 GB big (if you are really tight on hard drive space, and you have more than 8 GB of RAM, you can make it 4 GB). Select &#8220;Logical&#8221; and &#8220;Beginning of this space&#8221;. Now in the dropdown menu select &#8220;swap area&#8221;. The &#8220;Mount point&#8221; option should have disappeared now. Now let&#39;s make another partition, which is called the &#8216;root&#8217; partition. Make it 25 GB big. Select &#8220;Logical&#8221; and &#8220;Beginning of this space&#8221; and in the dropdown menu, select &#8220;Ext4 journaling file system&#8221;. Set the mount point as &#8220;&#47;&#8221; (just a slash). Now we need to create one last partition. Use all the remaining space (leave it at the default, since the default is the max size). Select &#8220;Logical&#8221; and &#8220;Beginning of this space&#8221;. In the dropdown menu, select &#8220;Ext4 journaling file system&#8221; like before. And set the &#8220;Mount point&#8221; to &#8220;&#47;home&#8221;.</p>
-
-<p>Double check everything and click &#8220;Install Now&#8221;.</p>
-
-<p>Now the hardest part is behind you.</p>
-
-<h2 id="7.%20Fill%20out%20basic%20info">7. Fill out basic info</h2>
-
-<p>Follow the on-screen instructions to select your time-zone, name, username, password, etc. Obviously, you don&#39;t have to put your real name. Your computer&#39;s name is what other devices on the network will know you as (if you don&#39;t know what that means, just put my_computer or something. It doesn&#39;t really matter, and you can change it later). You will need your username and password when logging into your computer, so write them down somewhere safe. Select &#8220;Require my password to log in&#8221; because it&#39;s more secure. Press &#8220;Continue&#8221;.</p>
-
-<h2 id="8.%20Wait">8. Wait</h2>
-
-<p>This may take a while (about 20-30 mins).</p>
-
-<h2 id="9.%20Restart">9. Restart</h2>
-
-<p>Once the installation is finished, a window will prompt you to click on &#8220;Restart Now&#8221;. Do that. As your computer is shutting down, it may ask you to remove the USB drive, and then press enter. When your computer starts up again, you will be faced with a strange menu where you can select which operating system to boot into. By default, if you wait for more than 5 seconds, your computer will automatically boot into Ubuntu. If you want to use Windows, use the arrow keys to select Windows and hit Enter. From now on, you will see this window every time you boot up your computer.</p>
-
-<p><strong>Finished !!</strong></p>
-
-<p>Congratulations! Pat yourself on the back. You&#39;ve successfully installed Ubuntu on your computer.</p>
-
-<p>If you have any issues during the installation process, feel free to ask me for help in the Element group chat, or send me an email.</p>
+<p>See detailed instructions <a href="../topics/Installing-Linux-2.html">here</a>.</p>
 </article>
 <footer>
 	<!-- Created with <a href="https://www.romanzolotarev.com/ssg.html">ssg</a> by Roman Zolotarev -->
